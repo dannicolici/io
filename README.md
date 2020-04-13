@@ -12,6 +12,8 @@ Actually it knows how to read all the primitive types and some other useful stuf
 
 Java versions supported: 11+
 
+Tip: you can implement your own TypedIO to read from and write to anything you like, not just System.in/out
+
 ## Menu functionality
 You can do this:
 
