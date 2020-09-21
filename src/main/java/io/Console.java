@@ -28,8 +28,6 @@ public class Console implements TypedIO {
      * and an error message in case of a wrong choice.
      * It will read the choice from System.in.
      *
-     * @param menu
-     * @param errorMessage
      * @return chosen option from the menu as char
      */
     public Optional<Character> choice(String menu, String errorMessage) {
@@ -52,7 +50,6 @@ public class Console implements TypedIO {
      * Expects a string menu with choices represented as chars.
      * It will read the choice from System.in.
      *
-     * @param menu
      * @return chosen option from the menu as char
      */
     public Optional<Character> choice(String menu) {
@@ -61,12 +58,10 @@ public class Console implements TypedIO {
 
     @Override
     public Optional<String> readString(String prompt, String errMessage) {
-        print(prompt);
         try {
             return Optional.ofNullable(reader().readLine());
         } catch (IOException e) {
-            printLine(errMessage);
-            return Optional.empty();
+            throw new RuntimeException(e);
         }
     }
 }
