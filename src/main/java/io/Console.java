@@ -31,7 +31,6 @@ public class Console implements TypedIO {
      * @return chosen option from the menu as char
      */
     public Optional<Character> choice(String menu, String errorMessage) {
-        printLine(menu);
         try {
             return readString(menu, errorMessage)
                     .filter(s -> !s.isBlank())
@@ -58,10 +57,12 @@ public class Console implements TypedIO {
 
     @Override
     public Optional<String> readString(String prompt, String errMessage) {
+        print(prompt);
         try {
             return Optional.ofNullable(reader().readLine());
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            printLine(errMessage);
+            return Optional.empty();
         }
     }
 }
